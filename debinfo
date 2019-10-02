@@ -7,8 +7,8 @@ Kernel="$(uname -sr)"
 Uptime="$(uptime -p | sed 's/up //')"
 Packages="$(dpkg -l | grep -c ^i)"
 Shell="$(basename "$SHELL")"
-CPU="$(lscpu | grep Model\ name | sed 's/name:\ //' | sed 's/(TM) //')"
-GPU="$(glxinfo -B | grep Device: | sed 's/Device: //' | sed 's/(TM) //')"
+CPU="$(lscpu | grep Model\ name | sed 's/name:\ //' | sed "s/([^)]*)/()/g" | sed 's/[)(]//g')" 
+GPU="$(glxinfo -B | grep Device: | sed "s/([^)]*)/()/g" | sed 's/[)(]//g')"
 RAM="$(free -h | awk '/^Mem:/ {print $3 "/" $2}')"
 
 
