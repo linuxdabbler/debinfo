@@ -1,7 +1,7 @@
 #!/bin/sh
 
 user=$USER@
-OS="Debian $(cat /etc/debian_version)"
+OS="$(lsb_release -sirc)"
 Desktop="${XDG_CURRENT_DESKTOP}"
 Kernel="$(uname -sr)"
 Uptime="$(uptime -p | sed 's/up //')"
