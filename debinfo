@@ -10,6 +10,7 @@ Shell="$(basename "$SHELL")"
 CPU="$(lscpu | grep Model\ name | sed 's/name:\ //' | sed "s/([^)]*)/()/g" | sed 's/[)(]//g')" 
 GPU="$(glxinfo -B | grep Device: | sed "s/([^)]*)/()/g" | sed 's/[)(]//g')"
 RAM="$(free -h | awk '/^Mem:/ {print $3 "/" $2}')"
+IP="$(hostname -I | awk '{print $1}')"
 
 
 echo '          _,met$$$$$gg.        '            $user$(hostname)
@@ -22,7 +23,7 @@ echo '   $$P      d$"     ,    $$P   '            Shell: $Shell
 echo '   $$:      $$.   -    ,d$$"   '            CPU: $CPU
 echo '   $$\;      Y$b._   _,d$P     '            GPU: $GPU
 echo '   Y$$.    `.`"Y$$$$P""        '            RAM: $RAM      
-echo '   `$$b      "-.__             '
+echo '   `$$b      "-.__             '            IP:  $IP
 echo '    `Y$$                       '
 echo '     `Y$$.                     '
 echo '       `$$b.                   '
